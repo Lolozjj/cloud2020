@@ -4,7 +4,7 @@ server:
 eureka:
   server:
     enable-self-preservation: false #关闭自我保护机制
-    eviction-interval-timer-in-ms: 2000 #设置心跳时间
+    #eviction-interval-timer-in-ms: 2000 #设置心跳时间
   instance:
     hostname: eureka7001.com #服务名称
   client:

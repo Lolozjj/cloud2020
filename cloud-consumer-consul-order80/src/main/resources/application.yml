@@ -5,7 +5,7 @@ spring:
   application:
      name: cloud-order-service
   cloud:
-    consul:
+    consul: #使用consul进行服务注册
       host: localhost
       port: 8500
       discovery:

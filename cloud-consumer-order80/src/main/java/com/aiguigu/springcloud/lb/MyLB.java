@@ -8,7 +8,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @program: cloud2020
- * @description:
+ * @description:手写下ribbon轮询算法
  * @author: Mr.ZhengJunJie
  * @create: 2020-04-03 20:10
  **/
@@ -23,11 +23,14 @@ public class MyLB implements LoadBalancer {
             current=this.atomicInteger.get();
             next=current>=2147483647?0:current+1;
         }while (!this.atomicInteger.compareAndSet(current,next));
-        System.out.println("#######################"+next);
+        System.out.println("############第几次访问，次数："+next);
         return next;
     }
     @Override
     public ServiceInstance instance(List<ServiceInstance> serviceInstances) {
-        return null;
+        int index=getAndIncrement()%serviceInstances.size();
+
+
+        return serviceInstances.get(index);
     }
 }
